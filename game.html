@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altın Oyunu - Virtual Vanguard Games</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #gameArea {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            position: relative;
+        }
+        .gold {
+            width: 50px;
+            height: 50px;
+            background-color: gold;
+            border: 1px solid #888;
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Revan Altin </h1>
+    <div id="gameArea">
+        <!-- Altınlar bu alana eklenecek -->
+    </div>
+    <script>
+        // Oyun alanı ve altınların oluşturulması
+        const gameArea = document.getElementById('gameArea');
+        
+        // Altınları rastgele yerleştirme fonksiyonu
+        function placeGold() {
+            const gold = document.createElement('div');
+            gold.className = 'gold';
+            gold.style.left = Math.random() * (gameArea.offsetWidth - 50) + 'px';
+            gold.style.top = Math.random() * (gameArea.offsetHeight - 50) + 'px';
+            gold.addEventListener('click', collectGold);
+            gameArea.appendChild(gold);
+        }
+        
+        // Altını toplama işlemi
+        function collectGold() {
+            this.parentNode.removeChild(this); // Altını kaldır
+            placeGold(); // Yeni bir altın yerleştir
+        }
+        
+        // İlk altınları yerleştir
+        for (let i = 0; i < 10; i++) {
+            placeGold();
+        }
+    </script>
+    <p>Oyunu oynamak için altınları toplayın!</p>
+</body>
+</html>
